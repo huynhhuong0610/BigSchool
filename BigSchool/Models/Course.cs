@@ -20,7 +20,10 @@ namespace BigSchool.Models
         public string Place { get; set; }
         public DateTime DateTime { get; set; }
         public Category Category { get; set;}
-    
+
+        [Required]
+        public byte CategoryID { get; set; }
+
     }
 
 

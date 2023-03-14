@@ -9,21 +9,21 @@
 
 </head>
 <body>
-    <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-dark bg-dark">
+    <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-dark  navbar-color">
         <div class="container">
-            @Html.ActionLink("Application name", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+            @Html.ActionLink("BIG SCHOOL", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
             <button type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" title="Toggle navigation" aria-controls="navbarSupportedContent"
                     aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse d-sm-inline-flex justify-content-between">
-                <ul class="navbar-nav flex-grow-1">
+                <ul class="navbar-nav flex-grow-1" style=" color: white">
                     <li>@Html.ActionLink("Home", "Index", "Home", new { area = "" }, new { @class = "nav-link" })</li>
                     <li>@Html.ActionLink("About", "About", "Home", new { area = "" }, new { @class = "nav-link" })</li>
                     <li>@Html.ActionLink("Courses", "Create", "Courses", new { area = "" }, new { @class = "nav-link" })</li>
                 </ul>
                  @Html.Partial("_LoginPartial")
-            </dixv>
+            </div>
         </div>
     </nav>
     <div class="container body-content">

@@ -18,3 +18,15 @@ select,
 textarea {
     max-width: 280px;
 }
+
+.navbar-nav > li > a {
+    padding: 15px;
+    text-decoration: none;
+    color: antiquewhite;
+
+}
+.navbar-color{
+    background: #ff0000;
+}
+
+

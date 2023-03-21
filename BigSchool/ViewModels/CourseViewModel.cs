@@ -21,6 +21,7 @@ namespace BigSchool.ViewModels
         [Required]
         public byte Category { get; set; }
         public IEnumerable<Category> Categories { get; set; }
+        public bool ShowAction { get; set; }
 
         public DateTime GetDateTime() 
         { 

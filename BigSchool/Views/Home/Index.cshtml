@@ -6,37 +6,38 @@
 <div class="row">
     <ul class="course" style="list-style: none">
         @foreach (var course in Model.UpcommingCourses)
-            {
-                <li style="position: relative; margin-bottom: 30px">
-                   <div class="date" style="text-align: center; background-color: #d41d50; color: white; width: 60px; border-radius: 8px;">
-                       <div class="month">
-                           @course.DateTime.ToString("MM")
-                       </div>
-                       <div class="day">
-                           @course.DateTime.ToString("dd")
-                       </div>
-                   </div>
-                   <div class="details" style="position: absolute; top: 0; left: 70px;">
-                       <span class="lecturer">
-                           @course.Lecturer.Name
-                           @if (Model.ShowAction)
-                           {
-                               <button data-user-id="@course.LecturerID" class="btn btn-default btn-sm js-toggle-follow"> Follow</button>
-                           }
-                       </span>
-                       <br />
-                       <span class="category">
-                           @course.Category.Name
-                       </span>
-                       @if (Model.ShowAction)
-                       {
-                         <button data-course-id="@course.Id" class="btn btn-default btn-sm js-toggle-attendance"> Going?</button>
-                       }
-
-                   </div>
-                </li>
-            }
+        {
+            <li style="position: relative; margin-bottom: 30px">
+                <div class="date" style="text-align: center; background-color: #d41d50; color: white; width: 60px; border-radius: 8px;">
+                    <div class="month">
+                        @course.DateTime.ToString("MM")
+                    </div>
+                    <div class="day">
+                        @course.DateTime.ToString("dd")
+                    </div>
+                </div>
+                <div class="details" style="position: absolute; top: 0; left: 70px;">
+                    <span class="lecturer">
+                        @course.Lecturer.Name
+                        @if (Model.ShowAction)
+                        {
+                            <button data-user-id="@course.LecturerID" class="btn btn-default btn-sm js-toggle-follow"> Follow</button>
+                        }
+                    </span>
+                    <br />
+                    <span class="category">
+                        @course.Category.Name
+                        @if (Model.ShowAction)
+                        {
+                            <button data-course-id="@course.Id" class="btn btn-default btn-sm js-toggle-attendance"> Going?</button>
+                        }
+                    </span>
+                </div>
+            </li>
+        }
     </ul>
+
+
     @section scripts
     {
         <script>
@@ -45,28 +46,47 @@
                     var button = $(e.target);
                     $.post("/api/attendances", { courseId: button.attr("data-course-id") })
                         .done(function () {
-                            button
-                                .removeClass("btn-default")
-                                .addClass("btn-info")
-                                .text("Going");
+                            alert("Dang ki thanh cong roi do..........")
+                            button.removeClass("btn-default");
+                            button.addClass("btn-info");
+                            button.text("Going");
                         })
                         .fail(function () {
-                        alert("Something failed!!!");
-                    });
-            });
-
-                $(".js-toggle-follow").click(function (e) {
-                    var button = $(e.target);
-                    $.post("/api/followings", { followeeId: button.attr("data-user-id") })
-                        .done(function () {
-                                button.text("Following");
-                        })
-                        .fail(function () {
-                            alert("Something failed!!!");
+                            alert("Da dang ki roi......");
                         });
                 });
 
-        });
+                $(".js-toggle-follow").click(function (e) {
+                    var button = $(e.target);
+                    //var followee = button.attr("data-user-id");
+                    $.post("/api/followings", { followeeId: button.attr("data-user-id") })
+                        .done(function () {
+                            button.text("Following");
+                            /*if (result == "cancel") {
+                                $('.js-toggle-follow').each(function (i, obj) {
+                                    if ($(this).attr('data-user-id') == followee) {
+                                        if ($(this).removeClass("btn-success")
+                                            .addClass("btn-default")
+                                            .text("Follow"));
+                                    }
+                                });
+                                alert("unFollow thanh cong.....")
+                            } else {
+                                $('.js-toggle-follow').each(function (i, obj) {
+                                    if ($(this).attr('data-user-id') == followee) {
+                                        if ($(this).removeClass("btn-success")
+                                            .addClass("btn-success")
+                                            .text("Following"));
+                                    }
+                                });
+                                alert("Follow thanh cong.....")
+                            }*/
+                        })
+                        .fail(function () {
+                            alert("Da theo doi roi");
+                        });
+                });
+            });
         </script>
-        }
+    }
 </div>
